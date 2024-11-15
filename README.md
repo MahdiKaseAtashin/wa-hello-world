@@ -9,4 +9,5 @@ This project provides a basic example of a "Hello World" application written in 
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/yourusername/hello-world-go.git
-   cd hello-world-go
+   cd hello-world
+   run main.go
