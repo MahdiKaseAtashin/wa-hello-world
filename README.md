@@ -1,18 +1,12 @@
-# wa-hello-world
-A basic "Hello World" program for beginners to learn programming fundamentals and language syntax.
+# Hello World Web Application in Go
 
-
-## Table of Contents
-- [About](#about)
-- [Getting Started](#getting-started)
-- [Languages](#languages)
-- [Contributing](#contributing)
-- [License](#license)
+A simple "Hello World" program to get started with Go programming.
 
 ## About
-This repository contains basic "Hello World" examples in multiple programming languages. It serves as a simple and effective introduction to programming concepts for new developers.
+This project provides a basic example of a "Hello World" application written in Go, perfect for beginners to learn Go syntax and structure.
 
 ## Getting Started
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/hello-world.git
+   git clone https://github.com/yourusername/hello-world-go.git
+   cd hello-world-go
