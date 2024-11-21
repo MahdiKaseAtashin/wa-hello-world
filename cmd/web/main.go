@@ -16,7 +16,7 @@ import (
 func main() {
 	var app config.AppConfig
 
-	app.Port = "8080"
+	app.Port = "8001"
 
 	tc, err := render.CreateTemplateCache()
 	if err != nil {
