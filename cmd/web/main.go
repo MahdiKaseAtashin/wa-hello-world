@@ -30,13 +30,13 @@ func main() {
 	handlers.NewHandlers(repo)
 	render.NewTemplates(&app)
 
-	http.HandleFunc("/", handlers.Repo.Home)
-	http.HandleFunc("/about", handlers.Repo.About)
-
 	fmt.Println(fmt.Sprintf("Starting application on port %s", app.Port))
-	err = http.ListenAndServe(":"+app.Port, nil)
-	if err != nil {
-		fmt.Println("Error starting server:", err)
+
+	srv := &http.Server{
+		Addr:    ":" + app.Port,
+		Handler: routes(&app),
 	}
 
+	err = srv.ListenAndServe()
+	log.Fatal(err)
 }
