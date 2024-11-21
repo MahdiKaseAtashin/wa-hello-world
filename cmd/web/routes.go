@@ -1,20 +1,17 @@
 package main
 
 import (
-	"github.com/go-chi/chi/v5"
-	"github.com/go-chi/chi/v5/middleware"
+	"github.com/gorilla/mux"
 	"github/mahdikaseatashin/wa-hello-world/pkg/config"
 	"github/mahdikaseatashin/wa-hello-world/pkg/handlers"
 	"net/http"
 )
 
 func routes(app *config.AppConfig) http.Handler {
-	mux := chi.NewRouter()
+	r := mux.NewRouter()
 
-	mux.Use(middleware.Recoverer)
+	r.HandleFunc("/", handlers.Repo.Home)
+	r.HandleFunc("/about", handlers.Repo.About)
 
-	mux.Get("/", handlers.Repo.Home)
-	mux.Get("/about", handlers.Repo.About)
-
-	return mux
+	return r
 }
