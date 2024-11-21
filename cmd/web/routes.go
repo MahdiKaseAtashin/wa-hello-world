@@ -10,6 +10,8 @@ import (
 func routes(app *config.AppConfig) http.Handler {
 	r := mux.NewRouter()
 
+	r.Use(NoSurf)
+	r.Use(SessionLoad)
 	r.HandleFunc("/", handlers.Repo.Home)
 	r.HandleFunc("/about", handlers.Repo.About)
 

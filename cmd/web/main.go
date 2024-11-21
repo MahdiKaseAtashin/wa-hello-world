@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/alexedwards/scs/v2"
 	"github/mahdikaseatashin/wa-hello-world/pkg/config"
 	"github/mahdikaseatashin/wa-hello-world/pkg/handlers"
 	"github/mahdikaseatashin/wa-hello-world/pkg/render"
@@ -9,14 +10,27 @@ import (
 	"net/http"
 )
 
+var app config.AppConfig
+
+const portNumber = "8001"
+
+var session *scs.SessionManager
+
 // main is the main entry point for the application
 //
 // The function registers the handlers for the "/" and "/about" routes
 // and starts the server on port portNumber.
 func main() {
-	var app config.AppConfig
+	app.InProduction = false
+	app.Port = portNumber
 
-	app.Port = "8001"
+	session = scs.New()
+	session.Lifetime = 24
+	session.Cookie.Persist = true
+	session.Cookie.SameSite = http.SameSiteLaxMode
+	session.Cookie.Secure = app.InProduction
+
+	app.Session = session
 
 	tc, err := render.CreateTemplateCache()
 	if err != nil {
