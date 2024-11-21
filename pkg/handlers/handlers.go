@@ -32,6 +32,8 @@ func NewHandlers(r *Repository) {
 
 // Home is the home page handler
 func (r *Repository) Home(w http.ResponseWriter, hr *http.Request) {
+	remoteIP := hr.RemoteAddr
+	r.App.Session.Put(hr.Context(), "remote_ip", remoteIP)
 	err := render.FromTemplatePath(w, "home.page.html", &models.TemplateData{})
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -41,8 +43,10 @@ func (r *Repository) Home(w http.ResponseWriter, hr *http.Request) {
 
 // About is the about page handler
 func (r *Repository) About(w http.ResponseWriter, hr *http.Request) {
+	remoteIP := r.App.Session.GetString(hr.Context(), "remote_ip")
 	stringMap := make(map[string]string)
 	stringMap["test"] = "Hello, again."
+	stringMap["remote_ip"] = remoteIP
 
 	err := render.FromTemplatePath(w, "about.page.html", &models.TemplateData{StringMap: stringMap})
 	if err != nil {

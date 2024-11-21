@@ -8,6 +8,7 @@ import (
 	"github/mahdikaseatashin/wa-hello-world/pkg/render"
 	"log"
 	"net/http"
+	"time"
 )
 
 var app config.AppConfig
@@ -25,7 +26,7 @@ func main() {
 	app.Port = portNumber
 
 	session = scs.New()
-	session.Lifetime = 24
+	session.Lifetime = 24 * time.Hour
 	session.Cookie.Persist = true
 	session.Cookie.SameSite = http.SameSiteLaxMode
 	session.Cookie.Secure = app.InProduction
